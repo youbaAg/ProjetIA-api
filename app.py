@@ -31,7 +31,3 @@ def predict():
     
     # Retourner la prédiction en format JSON
     return jsonify({'prediction': prediction[0]})
-
-
-if __name__ == '__main__':
-    app.run(debug=True)
