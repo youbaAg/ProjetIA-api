@@ -9,7 +9,12 @@ app = Flask(__name__)
 def home():
     return """
     <h1>Bienvenue sur notre API Fast Fashion predictions</h1>
-    <p>Cette API est utilisée pour prédire des données en utilisant un modèle ML entraîné.</p>
+    <p>Notre objectif est de changer la façon dont l'industrie fast fashion fonctionne en évitant la surproduction de vêtements et en promouvant une approche plus durable. 
+
+    <p>Un modèle prédictif est utilisé pour déterminer si un article sera en rupture de stock ou s'il restera en stock. 
+    Grâce à cette prédiction, nous pouvons ajuster notre production pour éviter les surproductions inutiles. 
+    Cela permet de réduire les déchets et les émissions de CO2 tout en créant des vêtements de qualité que les clients adorent</p>
+
     <p>Vous pouvez effectuer des prédictions en utilisant l'endpoint <code>/predict</code>. Pour cela, vous devez fournir les paramètres suivants:</p>
     <ul>
         <li><code>price</code>: le prix du produit (requis)</li>
