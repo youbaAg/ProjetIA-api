@@ -8,10 +8,18 @@ app = Flask(__name__)
 @app.route('/')
 def home():
     return """
-    <h1>Bienvenue sur mon API</h1>
+    <h1>Bienvenue sur notre API Fast Fashion predictions</h1>
     <p>Cette API est utilisée pour prédire des données en utilisant un modèle ML entraîné.</p>
+    <p>Vous pouvez effectuer des prédictions en utilisant l'endpoint <code>/predict</code>. Pour cela, vous devez fournir les paramètres suivants:</p>
+    <ul>
+        <li><code>price</code>: le prix du produit (requis)</li>
+        <li><code>color</code>: la couleur du produit (requis)</li>
+        <li><code>brand</code>: la marque du produit (requis)</li>
+        <li><code>category</code>: la catégorie du produit (requis)</li>
+    </ul>
+    <p>Vous pouvez fournir les paramètres soit dans le corps de la demande JSON (si vous utilisez une méthode POST), soit dans les paramètres de l'URL (si vous utilisez une méthode GET).</p>
     """
-    
+
 # Charger le modèle entraîné à partir du fichier
 model = joblib.load('model.joblib')
 
@@ -34,6 +42,11 @@ def predict():
             'brand': request.args.get('brand'),
             'category': request.args.get('category')
         }
+
+    # Vérifier si les données de test sont fournies
+    if not all(test_data.values()):
+        # Si les données ne sont pas fournies, retourner une erreur 400 (Bad Request)
+        return jsonify({'error': 'Les données de test sont manquantes price, color , brand, category.'}), 400
 
     # Transformer les données en DataFrame
     test_df = pd.DataFrame(test_data, index=[0])
