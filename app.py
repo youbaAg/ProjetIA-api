@@ -4,8 +4,17 @@ import joblib
 
 app = Flask(__name__)
 
+
+@app.route('/')
+def home():
+    return """
+    <h1>Bienvenue sur mon API</h1>
+    <p>Cette API est utilisée pour prédire des données en utilisant un modèle ML entraîné.</p>
+    """
+    
 # Charger le modèle entraîné à partir du fichier
 model = joblib.load('model.joblib')
+
 
 # Charger les colonnes à partir du fichier
 with open('columns.txt', 'r') as f:
